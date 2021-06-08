@@ -35,11 +35,16 @@ function setup() {
   ball = Bodies.circle(100,10,20,ball_options);
   World.add(world,ball);
   
+  wall = Bodies.rectangle(300,150,70,10,ground_options);
+  world.add(world,wedge);
   
+  wedge = Bodies.rectangle(100,200,100,200,ops);
+  world.add(world,wedge);
   
-
-  rectMode(CENTER);
-  ellipseMode(RADIUS);
+  rectMode (CENTER);
+  ellipsMode(RADIUS);
+  
+ 
 }
 
 
@@ -48,11 +53,20 @@ function draw()
   background(51);
   Engine.update(engine);
   
+  Matter.Body.rotate(wedge,angle)
+  push();
+  translate(wedge.position.x,wedge.position.y);
+  rotate(angle);
+  rect(0,0,100,20);
+  pop();
+  
+  angle +=0.1;
+  
   
 
   ellipse(ball.position.x,ball.position.y,20);
   rect(ground.position.x,ground.position.y,400,20);
- 
+ rect(wall.position.x,wall.position.y,70,20);
 
 
   
